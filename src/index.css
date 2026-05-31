@@ -1,0 +1,10 @@
+@import "tailwindcss";
+
+@theme {
+  --color-pagibig-navy: #112c44;
+  --color-pagibig-sky: #a3e7ff;
+  --color-pagibig-blue: #006fff;
+
+  --font-sans: "Inter", sans-serif;
+  --font-display: "Montserrat", sans-serif;
+}
