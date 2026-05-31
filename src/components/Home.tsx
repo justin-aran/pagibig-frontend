@@ -203,7 +203,7 @@ export default function Index() {
             {/* Subtitle section line */}
             <div className="pt-12 text-center w-full">
               <h2 className="font-sans font-extrabold text-[#112C44] text-[30px] leading-none tracking-tight">
-                What are the processes?
+                What are the steps?
               </h2>
             </div>
           </div>
