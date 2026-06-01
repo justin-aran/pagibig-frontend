@@ -22,8 +22,10 @@ export const FormSection: React.FC<FormSectionProps> = ({
           </label>
           <input
             type="text"
-            value={formData.loanAmount || ""}
-            onChange={(e) => handleInputChange("loanAmount", e.target.value)}
+            value={formData.desiredLoanAmount || ""}
+            onChange={(e) =>
+              handleInputChange("desiredLoanAmount", e.target.value)
+            }
             disabled={isReviewMode} // Locks the input field in review mode
             className="w-full h-10 px-3 bg-gray-50 disabled:bg-gray-100 disabled:opacity-80 text-gray-800 rounded-md border border-gray-200 outline-none focus:border-[#112C44]"
             placeholder="Enter desired loan amount"
@@ -36,8 +38,10 @@ export const FormSection: React.FC<FormSectionProps> = ({
           </label>
           <input
             type="text"
-            value={formData.loanTerm || ""}
-            onChange={(e) => handleInputChange("loanTerm", e.target.value)}
+            value={formData.desiredLoanTerm || ""}
+            onChange={(e) =>
+              handleInputChange("desiredLoanTerm", e.target.value)
+            }
             disabled={isReviewMode}
             className="w-full h-10 px-3 bg-gray-50 disabled:bg-gray-100 disabled:opacity-80 text-gray-800 rounded-md border border-gray-200 outline-none focus:border-[#112C44]"
             placeholder="Enter desired loan term"
@@ -50,8 +54,10 @@ export const FormSection: React.FC<FormSectionProps> = ({
           </label>
           <input
             type="text"
-            value={formData.downpayment || ""}
-            onChange={(e) => handleInputChange("downpayment", e.target.value)}
+            value={formData.downpaymentAmount || ""}
+            onChange={(e) =>
+              handleInputChange("downpaymentAmount", e.target.value)
+            }
             disabled={isReviewMode}
             className="w-full h-10 px-3 bg-gray-50 disabled:bg-gray-100 disabled:opacity-80 text-gray-800 rounded-md border border-gray-200 outline-none focus:border-[#112C44]"
             placeholder="Enter downpayment amount"

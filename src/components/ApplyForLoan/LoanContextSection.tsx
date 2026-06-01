@@ -24,26 +24,18 @@ export const LoanContextSection: React.FC<LoanContextProps> = ({
             Purpose of Loan
           </label>
           <select
-            value={formData.purpose || ""}
-            onChange={(e) => handleInputChange("purpose", e.target.value)}
+            value={formData.purposeId || ""}
+            onChange={(e) => handleInputChange("purposeId", e.target.value)}
             disabled={isReviewMode}
             className="w-full h-10 px-3 bg-gray-50 disabled:bg-gray-100 disabled:opacity-80 text-gray-800 rounded-md border border-gray-200 outline-none focus:border-[#112C44] cursor-pointer"
           >
             <option value="">Select Purpose</option>
-            <option value="Residential House and Lot Purchase">
-              Residential House and Lot Purchase
-            </option>
-            <option value="Commercial Unit Renovation">
-              Commercial Unit Renovation
-            </option>
-            <option value="Purchase of Car">Purchase of Car</option>
-            <option value="Vacant Lot Acquisition">
-              Vacant Lot Acquisition
-            </option>
-            <option value="Home Renovation">Home Renovation</option>
-            <option value="Acquiring Land for Parking">
-              Acquiring Land for Parking
-            </option>
+            <option value="PO1">Residential House and Lot Purchase</option>
+            <option value="PO2">Commercial Unit Renovation</option>
+            <option value="PO3">Purchase of Car</option>
+            <option value="PO4">Vacant Lot Acquisition</option>
+            <option value="PO5">Home Renovation</option>
+            <option value="PO7">Acquiring Land for Parking</option>
           </select>
         </div>
 
@@ -53,19 +45,17 @@ export const LoanContextSection: React.FC<LoanContextProps> = ({
             Mode of Payment
           </label>
           <select
-            value={formData.paymentMode || ""}
-            onChange={(e) => handleInputChange("paymentMode", e.target.value)}
+            value={formData.modeId || ""}
+            onChange={(e) => handleInputChange("modeId", e.target.value)}
             disabled={isReviewMode}
             className="w-full h-10 px-3 bg-gray-50 disabled:bg-gray-100 disabled:opacity-80 text-gray-800 rounded-md border border-gray-200 outline-none focus:border-[#112C44] cursor-pointer"
           >
             <option value="">Select Mode</option>
-            <option value="Salary Deduction">Salary Deduction</option>
-            <option value="Over-the-Counter">Over-the-Counter</option>
-            <option value="Post-Dated Checks">Post-Dated Checks</option>
-            <option value="Auto-Debit Arrangement">
-              Auto-Debit Arrangement
-            </option>
-            <option value="Cheques">Cheques</option>
+            <option value="SAD">Salary Deduction</option>
+            <option value="OTC">Over-the-Counter</option>
+            <option value="PDC">Post-Dated Checks</option>
+            <option value="ADA">Auto-Debit Arrangement</option>
+            <option value="CHE">Cheques</option>
           </select>
         </div>
       </div>

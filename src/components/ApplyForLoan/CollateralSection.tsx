@@ -52,9 +52,9 @@ export const CollateralSection: React.FC<CollateralProps> = ({
           </label>
           <input
             type="text"
-            value={formData.collateralValue || ""}
+            value={formData.CollateralValue || ""}
             onChange={(e) =>
-              handleInputChange("collateralValue", e.target.value)
+              handleInputChange("CollateralValue", e.target.value)
             }
             disabled={isReviewMode}
             className="w-full h-10 px-3 bg-gray-50 disabled:bg-gray-100 disabled:opacity-80 text-gray-800 rounded-md border border-gray-200 outline-none focus:border-[#112C44]"
