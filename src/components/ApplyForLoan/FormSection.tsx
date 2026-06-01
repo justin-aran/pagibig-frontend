@@ -2,16 +2,33 @@
 import React from "react";
 
 interface FormSectionProps {
+  title?: string;
   isReviewMode: boolean;
   formData: any;
   handleInputChange: (key: string, value: string) => void;
+  children?: React.ReactNode; // Pinapayagan pa rin si TypeScript children para sa ibang fields
 }
 
 export const FormSection: React.FC<FormSectionProps> = ({
   isReviewMode,
   formData,
   handleInputChange,
+  title,
+  children,
 }) => {
+  // KUNG may ipinasang children (gaya ng ginagawa ng LoanDetailsSection), iyon ang ire-render natin
+  if (children) {
+    return (
+      <div className="flex flex-col gap-4">
+        {title && (
+          <h3 className="text-xl font-extrabold text-[#112C44]">{title}</h3>
+        )}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">{children}</div>
+      </div>
+    );
+  }
+
+  // KUNG WALA namang children, ire-render natin yung orihinal mong fixed fields para sa Loan Details
   return (
     <div className="flex flex-col gap-4">
       <h3 className="text-xl font-extrabold text-[#112C44]">Loans Details</h3>
@@ -26,7 +43,7 @@ export const FormSection: React.FC<FormSectionProps> = ({
             onChange={(e) =>
               handleInputChange("desiredLoanAmount", e.target.value)
             }
-            disabled={isReviewMode} // Locks the input field in review mode
+            disabled={isReviewMode}
             className="w-full h-10 px-3 bg-gray-50 disabled:bg-gray-100 disabled:opacity-80 text-gray-800 rounded-md border border-gray-200 outline-none focus:border-[#112C44]"
             placeholder="Enter desired loan amount"
           />
