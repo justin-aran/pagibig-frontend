@@ -2,6 +2,7 @@
 import * as React from "react";
 import { useState } from "react"; // 🛠️ Added state to track what the user types
 import { Link } from "react-router-dom";
+import { Navbar } from "../Navbar";
 
 export function LoginForm() {
   // Local state to capture the user's name input string
@@ -20,77 +21,101 @@ export function LoginForm() {
   };
 
   return (
-    <main className="w-full max-w-[420px] bg-white rounded-xl p-6 lg:p-8 shadow-sm border border-gray-100 flex flex-col">
-      <div className="mb-5">
-        <h1 className="text-2xl lg:text-3xl font-extrabold tracking-tight text-[#112C44]">
-          Welcome back! 👋
-        </h1>
-        <p className="text-gray-500 font-medium mt-1 text-xs lg:text-sm">
-          It's nice to have you back.
-        </p>
+    <>
+      {/* Main Canvas */}
+      <div className="min-h-screen bg-[#E5E9EC] font-sans antialiased flex flex-col">
+        <Navbar />
+
+        {/* Content Section Wrapper */}
+        <div className="flex-1 flex justify-center px-4 pt-[100px] pb-16">
+          {/* 🛠️ WIDENED & DEEPENED CONTAINER: 
+              Max width is stepped up to 560px, and inner padding is increased to p-10/lg:p-12 
+          */}
+          <main className="w-full sm:max-w-[500px] md:max-w-[560px] h-fit bg-white rounded-2xl p-10 lg:p-12 shadow-md border border-gray-100 flex flex-col z-40">
+            {/* Header Text Scale Up */}
+            <div className="mb-8">
+              <h1 className="text-3xl lg:text-4xl font-extrabold tracking-tight text-[#112C44]">
+                Welcome back! 👋
+              </h1>
+              <p className="text-gray-500 font-medium mt-2 text-sm lg:text-base">
+                It's nice to have you back.
+              </p>
+            </div>
+
+            <form
+              onSubmit={handleSubmit}
+              className="flex flex-col gap-6 w-full"
+            >
+              {/* Name Field */}
+              <div className="flex flex-col gap-2">
+                <label className="text-[14px] font-bold text-[#112C44] tracking-wide">
+                  Your Name
+                </label>
+                {/* 🛠️ BUMPED HEIGHT (h-12), TEXT SIZE (text-base), and PADDING (px-4) */}
+                <input
+                  type="text"
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
+                  placeholder="Enter your full name"
+                  className="w-full h-12 px-4 text-base bg-gray-50 text-gray-800 rounded-lg border border-gray-200 focus:outline-none focus:border-[#112C44] focus:bg-white transition-all"
+                  required
+                />
+              </div>
+
+              {/* Email Field */}
+              <div className="flex flex-col gap-2">
+                <label className="text-[14px] font-bold text-[#112C44] tracking-wide">
+                  Email Address
+                </label>
+                {/* 🛠️ BUMPED HEIGHT (h-12), TEXT SIZE (text-base), and PADDING (px-4) */}
+                <input
+                  type="email"
+                  placeholder="Enter your email address"
+                  className="w-full h-12 px-4 text-base bg-gray-50 text-gray-800 rounded-lg border border-gray-200 focus:outline-none focus:border-[#112C44] focus:bg-white transition-all"
+                />
+              </div>
+
+              {/* Password Field */}
+              <div className="flex flex-col gap-2">
+                <label className="text-[14px] font-bold text-[#112C44] tracking-wide">
+                  Password
+                </label>
+                {/* 🛠️ BUMPED HEIGHT (h-12), TEXT SIZE (text-base), and PADDING (px-4) */}
+                <input
+                  type="password"
+                  placeholder="Enter your password"
+                  className="w-full h-12 px-4 text-base bg-gray-50 text-gray-800 rounded-lg border border-gray-200 focus:outline-none focus:border-[#112C44] focus:bg-white transition-all"
+                />
+                <button
+                  type="button"
+                  className="text-left text-sm font-bold text-[#112C44]/80 hover:text-[#112C44] hover:underline w-fit mt-1 transition-all"
+                >
+                  Forgot Password?
+                </button>
+              </div>
+
+              {/* 🛠️ ENLARGED BUTTON: Increased to h-12 with text-base tracking */}
+              <button
+                type="submit"
+                className="w-full bg-[#112C44] text-white h-12 rounded-lg font-bold text-base tracking-wide hover:bg-opacity-95 active:scale-[0.99] transition-all shadow-sm mt-2 cursor-pointer"
+              >
+                LOG IN
+              </button>
+            </form>
+
+            {/* Footer Links Sizing */}
+            <p className="mt-6 text-center text-sm lg:text-base text-gray-500 font-medium">
+              Don't have an account?{" "}
+              <Link
+                to="/register"
+                className="text-[#112C44] font-bold underline hover:text-opacity-80 transition-colors ml-0.5"
+              >
+                Register here
+              </Link>
+            </p>
+          </main>
+        </div>
       </div>
-
-      <form onSubmit={handleSubmit} className="flex flex-col gap-4 w-full">
-        {/* 🛠️ NEW: Dynamic Name Capture Field */}
-        <div className="flex flex-col gap-1.5">
-          <label className="text-[13px] font-bold text-[#112C44] tracking-wide">
-            Your Name
-          </label>
-          <input
-            type="text"
-            value={name}
-            onChange={(e) => setName(e.target.value)} // Binds input typing directly to state
-            placeholder="Enter your full name"
-            className="w-full h-9 px-3 text-sm bg-gray-50 text-gray-800 rounded-md border border-gray-200 focus:outline-none focus:border-[#112C44] focus:bg-white transition-all"
-            required
-          />
-        </div>
-
-        <div className="flex flex-col gap-1.5">
-          <label className="text-[13px] font-bold text-[#112C44] tracking-wide">
-            Email Address
-          </label>
-          <input
-            type="email"
-            placeholder="Enter your email address"
-            className="w-full h-9 px-3 text-sm bg-gray-50 text-gray-800 rounded-md border border-gray-200 focus:outline-none focus:border-[#112C44] focus:bg-white transition-all"
-          />
-        </div>
-
-        <div className="flex flex-col gap-1.5">
-          <label className="text-[13px] font-bold text-[#112C44] tracking-wide">
-            Password
-          </label>
-          <input
-            type="password"
-            placeholder="Enter your password"
-            className="w-full h-9 px-3 text-sm bg-gray-50 text-gray-800 rounded-md border border-gray-200 focus:outline-none focus:border-[#112C44] focus:bg-white transition-all"
-          />
-          <button
-            type="button"
-            className="text-left text-xs font-bold text-[#112C44]/80 hover:text-[#112C44] hover:underline w-fit mt-1 transition-all"
-          >
-            Forgot Password?
-          </button>
-        </div>
-
-        <button
-          type="submit"
-          className="w-full bg-[#112C44] text-white h-10 rounded-md font-bold text-sm tracking-wide hover:bg-opacity-95 active:scale-[0.99] transition-all shadow-sm mt-2 cursor-pointer"
-        >
-          LOG IN
-        </button>
-      </form>
-
-      <p className="mt-5 text-center text-xs lg:text-sm text-gray-500 font-medium">
-        Don't have an account?{" "}
-        <Link
-          to="/register"
-          className="text-[#112C44] font-bold underline hover:text-opacity-80 transition-colors ml-0.5"
-        >
-          Register here
-        </Link>
-      </p>
-    </main>
+    </>
   );
 }

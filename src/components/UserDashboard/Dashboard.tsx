@@ -1,11 +1,11 @@
 "use client";
 import React from "react";
-import { DashboardHeader } from "./DashboardHeader";
 import { LogoutButton } from "./LogoutButton";
 import { WelcomeMessage } from "./WelcomeMessage";
 import { ActionGrid } from "./ActionGrid";
 import { NavigationMenu } from "./NavigationMenu";
 import { Footer } from "./Footer";
+import { Navbar } from "../Navbar"; // 🛠️ Integrated path to import your global frozen Navbar
 
 export const Dashboard: React.FC = () => {
   return (
@@ -15,14 +15,14 @@ export const Dashboard: React.FC = () => {
       - Changed bg-gray-200 to your clean system color 'bg-[#E5E9EC]' to maintain visual brand harmony.
     */
     <div className="min-h-screen bg-[#E5E9EC] flex flex-col font-sans overflow-x-hidden antialiased">
-      {/* 1. Global Navigation Top Header Layout Block */}
-      <DashboardHeader />
+      {/* 🛠️ FIXED: Replaced old local <DashboardHeader /> with your shared frozen navbar layout */}
+      <Navbar />
 
       {/* 🛠️ CORE MIDDLE CONTENT AREA:
-        - Scaled down the container padding layout constraints for maximum clarity.
+        - Added `mt-[90px]` to shift the body content cleanly down past the fixed navigation bar coordinates.
         - Centers the dashboard cards on wide desktop displays automatically via 'mx-auto'.
       */}
-      <main className="flex-1 w-full max-w-[1020px] mx-auto px-6 md:px-10 pt-8 pb-12 flex flex-col">
+      <main className="flex-1 w-full max-w-[1020px] mx-auto px-6 md:px-10 pt-8 pb-12 mt-[90px] flex flex-col">
         {/* 2. GREETING & DESTRUCTION LAYER:
           - Places your "Hello, User!" greetings panel directly alongside your "LOG OUT" button action block.
           - Leverages a flexbox row configuration to keep them balanced across screen sizes.

@@ -1,12 +1,12 @@
 "use client";
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom"; // Integrated Router for real navigation
-import { Header } from "./Header";
+import { useNavigate } from "react-router-dom";
 import { BackNavigation } from "./BackNavigation";
 import { FormSection } from "./FormSection";
 import { InputField } from "./InputField";
 import { SelectField } from "./SelectField";
 import { Footer } from "./Footer";
+import { Navbar } from "../Navbar"; // 🛠️ Updated path to import your global frozen Navbar
 
 interface FormData {
   registrationNumber: string;
@@ -50,7 +50,6 @@ export const AccountCreationForm: React.FC = () => {
     console.log("Creating account with data:", formData);
   };
 
-  // Convert raw select array sets to simplified option string matrices for our SelectField
   const sexOptions = ["Male", "Female"];
   const citizenshipOptions = ["Filipino", "Other"];
 
@@ -60,22 +59,21 @@ export const AccountCreationForm: React.FC = () => {
         rel="stylesheet"
         href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/dist/tabler-icons.min.css"
       />
+
       {/* Workspace canvas synced with your matte light-gray background token */}
       <div className="flex flex-col bg-[#E5E9EC] min-h-screen font-sans antialiased">
-        <Header />
+        {/* 🛠️ Swapped <Header /> for your shared frozen layout bar */}
+        <Navbar />
 
-        {/* 
-          Main Container: Trimmed down tracking size from px-20 to max-w-[1020px] 
-          and vertical padding elements down to pt-6 pb-2 to match your compact design flow.
+        {/* 🛠️ Main Container Spacing Fix:
+          Changed `pt-6` to `pt-[130px]`. This leaves a clean space right below the 
+          90px height of your navbar so the BackNavigation arrow is fully visible!
         */}
-        <main className="flex-1 max-w-[1020px] mx-auto w-full px-8 pt-6 pb-2">
+        <main className="flex-1 max-w-[1020px] mx-auto w-full px-8 pt-[130px] pb-12">
           <BackNavigation />
 
           <form onSubmit={handleCreateAccount} className="w-full">
-            {/* 
-              Account Information Section:
-              Leverages the internal grid styles from FormSection instead of complex inner flex rows.
-            */}
+            {/* Account Information Section */}
             <FormSection title="Account Information">
               <InputField
                 label="PAG-IBIG Registration Tracking Number"
@@ -132,7 +130,6 @@ export const AccountCreationForm: React.FC = () => {
                 onChange={handleInputChange("cellphoneNumber")}
                 required
               />
-              {/* Span utility forces individual element full width over standard 2-column configurations */}
               <div className="md:col-span-2">
                 <InputField
                   label="Home Address"
@@ -174,11 +171,7 @@ export const AccountCreationForm: React.FC = () => {
               />
             </FormSection>
 
-            {/* 
-              🛠️ Form Control Interactivity Stack:
-              - Reduced paddings, margins, and component button sizes down to compact baselines.
-              - Injected hover lifts and translation active compressions on buttons.
-            */}
+            {/* Form Control Interactivity Stack */}
             <div className="flex flex-col gap-2.5 items-center mt-6 pb-6">
               <button
                 type="submit"

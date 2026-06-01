@@ -1,7 +1,7 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Home from "./components/Home";
 import { AccountCreationForm } from "./components/AccountCreation/AccountCreationForm";
-import ApplyLoan from "./components/ApplyLoan/LoanApplicationForm";
+import ApplyLoan from "./components/ApplyForLoan/LoanApplicationForm";
 import LogIn from "./components/LogIn/LoginPage";
 import Dashboard from "./components/UserDashboard/Dashboard"; // 🛠️ FIXED: Pointed directly to Dashboard.tsx
 

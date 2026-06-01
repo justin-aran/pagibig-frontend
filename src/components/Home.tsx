@@ -81,7 +81,8 @@ function BubbleBackground() {
 
 function Navbar() {
   return (
-    <nav className="w-full bg-[#112C44]">
+    // 🛠️ ADDED: 'sticky top-0 z-50' to safely freeze the header layout over scrolling content
+    <nav className="fixed top-0 left-0 right-0 w-full bg-[#112C44] shadow-md z-50 h-[90px]">
       <div className="max-w-[1200px] mx-auto px-12 flex items-center justify-between h-[90px]">
         <Link to="/" className="shrink-0">
           <img
@@ -134,7 +135,7 @@ export default function Index() {
     <div className="min-h-screen flex flex-col bg-[#E5E9EC] font-sans overflow-x-hidden antialiased">
       <Navbar />
 
-      <main className="flex-1 relative pb-16">
+      <main className="flex-1 relative pb-16 pt-[90px]">
         <BubbleBackground />
 
         <div className="relative z-10 max-w-[1140px] mx-auto px-12 pt-10">
@@ -203,7 +204,7 @@ export default function Index() {
             {/* Subtitle section line */}
             <div className="pt-12 text-center w-full">
               <h2 className="font-sans font-extrabold text-[#112C44] text-[30px] leading-none tracking-tight">
-                What are the steps?
+                What are the processes?
               </h2>
             </div>
           </div>
@@ -221,7 +222,7 @@ export default function Index() {
                   boxShadow: "0px 4px 10px rgba(0,0,0,0.06)",
                 }}
               >
-                <span className="font-sans font-extrabold text-[#112C44] text-[16px] tracking-tight leading-none uppercase opacity-85">
+                <span className="font-sans font-extrabold text-[#112C44] text-[24px] tracking-tight leading-none uppercase opacity-85">
                   {step.label}
                 </span>
 

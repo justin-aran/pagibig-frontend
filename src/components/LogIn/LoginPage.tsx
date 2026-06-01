@@ -1,7 +1,7 @@
 import React from "react";
 import { LoginForm } from "./LoginForm";
-import { Header } from "../ApplyLoan/Header"; // Adjust relative file pathing blocks if needed
-import { Footer } from "../ApplyLoan/Footer"; // Adjust relative file pathing blocks if needed
+import { Navbar } from "../Navbar"; // 🛠️ Changed this line to use your new shared Navbar
+import { Footer } from "../UserDashboard/Footer"; // 🛠️ Points to your clean dashboard footer layout
 
 export default function LoginPage() {
   return (
@@ -11,7 +11,7 @@ export default function LoginPage() {
     */
     <div className="min-h-screen bg-[#E5E9EC] flex flex-col font-sans">
       {/* Global Navigation Layout Frame Header */}
-      <Header />
+      <Navbar />
 
       {/* Perfectly Centered Interactive Login Node Workspace */}
       <div className="flex-1 flex items-center justify-center p-6">

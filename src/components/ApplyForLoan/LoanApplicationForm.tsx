@@ -1,11 +1,11 @@
 "use client";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Header } from "./Header";
 import { Footer } from "./Footer";
 import { FormSection } from "./FormSection";
 import { LoanContextSection } from "./LoanContextSection";
 import { CollateralSection } from "./CollateralSection";
+import { Navbar } from "../Navbar"; // 🛠️ Integrated path to import your global frozen Navbar
 
 export default function LoanApplicationForm() {
   const navigate = useNavigate();
@@ -37,22 +37,48 @@ export default function LoanApplicationForm() {
     alert("Draft successfully backed up to application cache!");
   };
 
-  const handleConfirmSubmission = () => {
-    console.log("Submitting finalized loan data map:", formData);
-    alert("Application successfully submitted!");
-    navigate("/dashboard");
+  const handleConfirmSubmission = async () => {
+    try {
+      // This command opens a network tunnel straight to your classmate's running Java server
+      const response = await fetch("http://localhost:8080/api/loans/submit", {
+        method: "POST", // Tells the server we are SENDING new data
+        headers: {
+          "Content-Type": "application/json", // Tells the server the data is in JSON format
+        },
+        body: JSON.stringify(formData), // Takes your form data and packs it up for the trip
+      });
+
+      if (response.ok) {
+        alert(
+          "Success! Your application traveled to the Java backend and saved to MySQL!",
+        );
+        navigate("/dashboard");
+      } else {
+        alert(
+          "Connected to Java, but the backend encountered an error processing the data.",
+        );
+      }
+    } catch (error) {
+      console.error("Connection failed:", error);
+      alert(
+        "Could not reach the backend. Is your classmate's Spring Boot application running in IntelliJ right now?",
+      );
+    }
   };
 
   return (
     /* 🛠️ MASTER FLEX LAYOUT FRAME: 
-       Spans full height and forces footer to the bottom of the monitor window 
+        Spans full height and forces footer to the bottom of the monitor window 
     */
     <div className="min-h-screen bg-[#E5E9EC] flex flex-col font-sans antialiased">
-      {/* 1. Global Navigation Top Header Block */}
-      <Header />
+      {/* 🛠️ FIXED: Replaced old placeholder <Header /> with your shared frozen navbar layout */}
+      <Navbar />
 
-      {/* Upper Breadcrumb Go Back Backtrack Element Link Row */}
-      <div className="w-full max-w-[960px] mx-auto px-6 pt-6 flex items-center justify-start">
+      {/* 🛠️ Layout Clearance Container:
+          - Added `mt-[90px]` to shift the body cleanly down past the fixed navigation bar coordinates.
+          - Kept `pt-6` so the "Go back to home" back navigation stays visually balanced.
+      */}
+      <div className="w-full max-w-[960px] mx-auto px-6 pt-6 mt-[90px] flex items-center justify-start">
         <button
           onClick={() => navigate("/dashboard")}
           type="button"
@@ -109,7 +135,7 @@ export default function LoanApplicationForm() {
               </button>
             </div>
           ) : (
-            /* PHASE B: CONFIRMATION REVIEW STEP ACTIVE (Exactly as shown in dfdd.png) */
+            /* PHASE B: CONFIRMATION REVIEW STEP ACTIVE */
             <div className="flex items-center gap-4">
               <button
                 type="button"
